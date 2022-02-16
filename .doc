@@ -1,0 +1,21 @@
+$_SESSION['account_holder'] // for ever user email
+$_SESSION['account_id'] // for ever user id
+$_POST['post_pass] for login/signup password
+$_POST['post_mail']
+$_POST['post_login_submit']
+
+css classes
+currenynet-init
+currenynet-init-usd
+
+HTML DOM ATTRIBUTE
+currencynet-value FOR THE PRICE value
+
+
+
+javascripts variable
+primaryCurrency for the browser location default = USD
+priceValue = value of price
+
+
+

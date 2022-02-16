@@ -1,0 +1,35 @@
+@keyframes notification {
+    0%{
+        right:40px;
+    }
+    10%{
+        right:40px;
+    }
+    20%{
+        right:40px;
+    }
+    30%{
+        right:40px;
+    }
+    40%{
+        right:40px;
+    }
+    50%{
+        right:45px;
+    }
+    60%{
+        right:40px;
+    }
+    70%{
+        right:25px;
+    }
+    80%{
+        right:20px;
+    }
+    90%{
+        right:15px;
+    }
+    100% {
+        right:-10px;
+    }
+}
