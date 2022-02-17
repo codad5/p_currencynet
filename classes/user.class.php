@@ -271,8 +271,9 @@
                             </div>';
                 } else {
                     $readAble = json_decode($response, true);
-                    // var_dump( $readAble);
-                    if($readAble['status']){
+                    // var_dump( $readAble);success
+                    if($readAble['status'] === true){
+                    if($readAble['data']['status'] === 'success'){
                         $getPayment = $this->getPayment($readAble['data']['reference']);
                         $getPayment = $getPayment[0];
                         if($getPayment !== false){
@@ -293,6 +294,19 @@
                             return false;
                         }
                         
+                    }
+                    else{
+                        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
+                                "Payment with reference id #:" '. $readAble['data']['reference'].' was '.$readAble['data']['status'].' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        return 'false';
+                    }
+                    }
+                    else{
+                        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
+                                "Payment with reference id #:" '. $refrence.' did not go through <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        return 'false';
                     }
                 }
 

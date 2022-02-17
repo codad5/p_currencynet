@@ -14,7 +14,7 @@ session_start();
                             </div>';
         $url = filter_var($_POST['website'], FILTER_SANITIZE_URL);
         $amount = intval($_POST['amount']);
-        if($amount >= 100){
+        if($amount >= 1000){
             $prePayment = $user->prePayment($amount, $url);
 if($prePayment !== false){
 
@@ -63,7 +63,7 @@ if($prePayment !== false){
     else{
             
             echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                invalid order amount <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                invalid order amount <br/> Amount should be greater than 1000 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
         }
     
