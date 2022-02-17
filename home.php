@@ -35,7 +35,7 @@ if(!isset($_SESSION['account_holder'])){
           <div class="carousel-caption">
             <h1><span style='color:#8a2be2'>Bootstrap</span> For Currency </h1>
             <p>Give your customers satisfaction and confidence when trading with you in your website</p>
-            <p>  <code class='code'><script src="http://<?php echo $_SERVER['HTTP_HOST'] ?>/currencynet/scripts/test.js" ></script></code> </p>
+            <p>  <code class='code'><script src="http://<?php echo $_SERVER['HTTP_HOST'] ?>/currencynet/scripts/currencynet.v2.min.js" ></script></code> </p>
             <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
           </div>
         </div>

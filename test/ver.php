@@ -2,7 +2,7 @@
   $curl = curl_init();
   
   curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.paystack.co/transaction/verify/z2195e2opv",
+    CURLOPT_URL => "https://api.paystack.co/transaction/verify/ipa6q91vl5",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

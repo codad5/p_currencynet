@@ -7,6 +7,7 @@ class API extends Dbh{
     // protected $name2;
     public function __construct($url = ''){
         $domain = "";
+        var_dump($_SERVER['HTTP_REFERER']);
         if(isset($_SERVER['HTTP_REFERER'])){
             $domain = explode('/', $_SERVER['HTTP_REFERER']);
             $domain = $domain[0]."/".$domain[1]."/".$domain[2].'/';

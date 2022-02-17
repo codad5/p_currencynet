@@ -88,12 +88,16 @@
                     exit();
                 
                 }
+                $website_new_details = $this->checkWebsite($website)[0];
                 echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Adding Request<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                Adding Request for '.$ref.' '.$website_new_details['request_total'].' >= '.$newAmount.' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
-                if($this->checkWebsite($website) == $newAmount){
-                    $sql = "UPDATE websites SET verify = ? WHERE refrence_key = ?;";
+
+                if($website_new_details['request_total'] == $newAmount){
+                    
+                    $sql = "UPDATE request_orders SET verify = ? WHERE refrence_key = ?;";
                     $stmt = $this->connect()->prepare($sql);
+
                     if(!$stmt->execute([true, $ref])){
                         $stmt = null;
                         return false;
@@ -241,6 +245,7 @@
             
             
             $curl = curl_init();
+            // $refrence = "ipa6q91vl5";
   
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => "https://api.paystack.co/transaction/verify/".$refrence,
@@ -269,13 +274,14 @@
                     // var_dump( $readAble);
                     if($readAble['status']){
                         $getPayment = $this->getPayment($readAble['data']['reference']);
+                        $getPayment = $getPayment[0];
                         if($getPayment !== false){
 
-                            return $readAble;
+                            // return $readAble;
                             if($this->addRequest($getPayment['amount'], $getPayment['website_domain'], $readAble['data']['reference'])){
                                 echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Verification  cURL Error #:" '. $getPayment['website_domain'].'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                                "Verification  cURL Error #:" '. $readAble['data']['reference'].'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
                                 return true;
                             }
                             else{
@@ -295,12 +301,12 @@
             if($vaild){
                 
                 $stmt = $this->connect()->prepare("SELECT * FROM request_orders WHERE email  = ? AND verify = ?;");
-                $passedStmt = $stmt->execute(array($this->mail, true));
+                $passedStmt = $stmt->execute(array($this->mail, 1));
             }
             elseif ($vaild === false) {
                 # code...
                 $stmt = $this->connect()->prepare("SELECT * FROM request_orders WHERE email  = ? AND verify = ?;");
-                $passedStmt = $stmt->execute(array($this->mail, false));
+                $passedStmt = $stmt->execute(array($this->mail, 0));
             }
             else{
                 $stmt = $this->connect()->prepare("SELECT * FROM request_orders WHERE email  = ?;");
@@ -328,10 +334,13 @@
             $payments = $this->getMyPayment(false);
             foreach ($payments as $key) {
                 if($key['verify'] == false){
-                    $this->verifyPayment($key['refrence_key']);
-                    echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                    Trying to Verify Payment with Refrence Key: ' . $key['refrence_key'] .'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>';
+                    if($this->verifyPayment($key['refrence_key'])){
+
+                        
+                        echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
+                        Trying to Verify Payment with Refrence Key: ' . $key['refrence_key'] .'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+                    }
                 }
                 # code...
             }
