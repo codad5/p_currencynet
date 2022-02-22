@@ -132,3 +132,11 @@ article.doc-block {
     padding:10px 30px;
     word-wrap: break-word;
 }
+
+.notifications-box-cnt {
+    position: fixed;
+    z-index: 1000000;
+    width: clamp(200px, 90vw, 500px);
+    right: 20px;
+
+}

@@ -42,14 +42,16 @@ session_start();
         $alertType = 'alert-info';
         break;
           }
-          echo '<div class="animate__animated alert '.$alertType.' alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-        '.$message.' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
+          echo "<script>
+                    notificationAdd('".$message." ' , '".$alertType."');
+                </script>";
+          
         }
         else{
-          echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-        Hello Dear <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
+          echo "<script>
+                    notificationAdd('Hello Dear' , 'alert-info');
+                </script>";
+          
         }
         
     

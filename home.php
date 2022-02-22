@@ -125,9 +125,7 @@ if(!isset($_SESSION['account_holder'])){
         <?php include_once 'inc/table.inc.php';?>
     </section>
     <section  class="container" ></section>
-    <div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-        hello <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+   
 
 
 

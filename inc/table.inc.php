@@ -57,7 +57,7 @@
              
         
     </form>
-    <form action="inc/addRequest.inc.php" method="post"  id='verify-payment-form'>
+    <form  method="post"  id='verify-payment-form'>
         Verify Payment
         <input type="text" name="ref" id="ref_key">
         <button type="submit">Verfiy</button>

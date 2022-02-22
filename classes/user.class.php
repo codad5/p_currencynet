@@ -89,9 +89,10 @@
                 
                 }
                 $website_new_details = $this->checkWebsite($website)[0];
-                echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Adding Request for '.$ref.' '.$website_new_details['request_total'].' >= '.$newAmount.' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                        notificationAdd('Adding Request for ".$ref."', 'alert-danger');
+                     </script>";
+                
 
                 if($website_new_details['request_total'] == $newAmount){
                     
@@ -204,10 +205,11 @@
             curl_close($ch);
             
             if ($err) {
+                echo "<script>
+                        notificationAdd(' Could not connect to paystack cURL Error #: ".$err."', 'alert-danger');
+                     </script>";
                 
-                echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Could not connect to paystack cURL Error #:" '. $err.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                
                 return false;
                 exit();
             } else {
@@ -229,16 +231,18 @@
         }
         public function verifyPayment($refrence){
             if($this->getPayment($refrence) === false){
-                echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Such payment Record fail to Exists for '.$refrence.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                        notificationAdd('Such payment Record fail to Exists for ".$refrence."', 'alert-warning');
+                     </script>";
+                
                             return ["norm"];
                             // exit;
             }
             if($this->getPayment($refrence)[0]['verify'] != 0){
-                echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Payment Already Added <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                        notificationAdd('Payment Already Added', 'alert-info');
+                     </script>";
+                
                             // exit;
                             return ["norm"];
             }
@@ -266,9 +270,11 @@
                 curl_close($curl);
                 
                 if ($err) {
-                    echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Verification  cURL Error #:" '. $err.'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                     echo "<script>
+                            notificationAdd('CVerification  cURL Error #   :".$err."' , 'alert-danger');
+                        </script>";
+                
+                    
                 } else {
                     $readAble = json_decode($response, true);
                     // var_dump( $readAble);success
@@ -280,9 +286,10 @@
 
                             // return $readAble;
                             if($this->addRequest($getPayment['amount'], $getPayment['website_domain'], $readAble['data']['reference'])){
-                                echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Verification  cURL Error #:" '. $readAble['data']['reference'].'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>';
+                                echo "<script>
+                                        notificationAdd('Verification  cURL Error #   :".$readAble['data']['reference']."' , 'alert-danger');
+                                    </script>";
+                                
                                 return true;
                             }
                             else{
@@ -296,16 +303,18 @@
                         
                     }
                     else{
-                        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Payment with reference id #:" '. $readAble['data']['reference'].' was '.$readAble['data']['status'].' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>';
+                        echo "<script>
+                                notificationAdd('Payment with reference id #  :".$readAble['data']['reference']." was ".$readAble['data']['status']."' , 'alert-warning');
+                            </script>";
+                        
                         return 'false';
                     }
                     }
                     else{
-                        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                "Payment with reference id #:" '. $refrence.' did not go through <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>';
+                        echo "<script>
+                                notificationAdd('Payment with reference id #  :".$refrence." was did not go through' , 'alert-warning');
+                            </script>";
+                        
                         return 'false';
                     }
                 }
@@ -350,10 +359,9 @@
                 if($key['verify'] == false){
                     if($this->verifyPayment($key['refrence_key'])){
 
-                        
-                        echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                        Trying to Verify Payment with Refrence Key: ' . $key['refrence_key'] .'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>';
+                        echo "<script>
+                                notificationAdd(' Trying to Verify Payment with Refrence Key:  :".$key['refrence_key']." was did not go through' , 'alert-warning');
+                            </script>";
                     }
                 }
                 # code...

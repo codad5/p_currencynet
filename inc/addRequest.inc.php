@@ -9,9 +9,10 @@ session_start();
     
     
     if(isset($_POST['website']) && isset($_POST['website'])){
-        echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Processing Payment with Paystack<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+        echo "<script>
+                    notificationAdd('Processing Payment with Paystack ', 'alert-info');
+                </script>";
+        
         $url = filter_var($_POST['website'], FILTER_SANITIZE_URL);
         $amount = intval($_POST['amount']);
         if($amount >= 1000){
@@ -62,9 +63,9 @@ if($prePayment !== false){
     }
     else{
             
-            echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                invalid order amount <br/> Amount should be greater than 1000 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+           echo "<script>
+                    notificationAdd('invalid order amount ', 'alert-warning');
+                </script>";
         }
     
         
@@ -73,44 +74,48 @@ if($prePayment !== false){
     elseif (isset($_POST['refrence'])) {
         $refrence = filter_var($_POST['refrence'], FILTER_SANITIZE_STRING);
         if(empty($_POST['refrence']) || $refrence == null || $refrence == '') {
-            echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Invalid Input<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+            echo "<script>
+                    notificationAdd('Invalid Input ', 'alert-warning');
+                </script>";
+            
                             // exit;
         }
+        echo "<script>
+                    notificationAdd('Verifying Payment for refrence id :".$refrence."' , 'alert-info');
+                </script>";
         
-        echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Verifying Payment for refrence id :"'.$refrence.'"<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
         if($user->verifyPayment($refrence)){
-                echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                successfully added for refrence id"'.$refrence.'" <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+            echo "<script>
+                    notificationAdd('successfully added for refrence id :".$refrence."' , 'alert-success');
+                </script>";
+                
             }
         }
         elseif(isset($_POST['ref_key'])){
         $refrence = filter_var($_POST['ref_key'], FILTER_SANITIZE_STRING);
         if(empty($refrence) || $refrence == null || $refrence == '') {
-            echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Invalid Input<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+             echo "<script>
+                    notificationAdd('Invalid Input :".$refrence."' , 'alert-warning');
+                </script>";
+            
                             include_once 'table.inc.php';
 
                             exit;
         }
 
             if($user->verifyPayment($refrence) === true){
-                echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                successfully added for refrence id"'.$refrence.'" <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                    notificationAdd('successfully added for refrence id :".$refrence."' , 'alert-success');
+                </script>";
             }
             elseif($user->verifyPayment($refrence)){
                 
             }
             else{
-                echo '<div class="animate__animated alert alert-danger alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Could not verify Payment  with id "'.$refrence.'" <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                    notificationAdd('Could not verify Payment  with id :".$refrence."' , 'alert-danger');
+                </script>";
+                
 
             }
         }

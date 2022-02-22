@@ -148,6 +148,9 @@ $API = new API($url);
 // var_dump($_SERVER);
 echo $API->getWebsiteDetails();
 // echo $API->responseCode;
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header('Access-Control-Allow-Headers: X-Requested-With');
 header('Content-Type: application/json', true, $API->responseCode);
 
 ?>

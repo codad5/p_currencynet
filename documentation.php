@@ -19,7 +19,7 @@ session_start();
               <h1>Documentation</h1>
               
             
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Begin</a></p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Begin Development</a></p>
           </div>
         </div>
         

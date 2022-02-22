@@ -675,8 +675,7 @@ function currencynet(floatBol = true) {
                 if (navigator.geolocation) {
                     try {
                         const position = await this.getCurrentPosition();
-                        console.log(1000);
-                        console.log(1000);
+                        
                         console.log(position)
                         let lat = position.coords.latitude
                         let lon = position.coords.longitude

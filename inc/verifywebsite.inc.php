@@ -8,9 +8,9 @@ if(isset($_POST['website'])){
     
     $url = filter_var($_POST['website'], FILTER_SANITIZE_URL);
     if(empty($url) || $url == false){
-        echo '<div class="animate__animated alert alert-danger  alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                invalid Url <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+        echo "<script>
+                        notificationAdd('Invalid Url ', 'alert-danger');
+                     </script>";
         include_once 'table.inc.php';
 
         exit();
@@ -23,10 +23,10 @@ if(isset($_POST['website'])){
         // echo $url[$i];
         $acceptedProtocol = array('http:', 'https:');
         if(!in_array($url[0], $acceptedProtocol)){
+            echo "<script>
+                        notificationAdd('Invalid Url ', 'alert-danger');
+                     </script>";
             
-            echo '<div class="animate__animated alert alert-danger  alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                invalid Url <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
             include_once 'table.inc.php';
 
             exit();
@@ -68,21 +68,24 @@ if(isset($_POST['website'])){
                     case 1:
                         # code...
                         // echo 'Already Registerd'.$done;
-                        echo '<div class="animate__animated alert alert-success alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                success <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                        echo "<script>
+                        notificationAdd('Successfully added ', 'alert-success');
+                     </script>";
+                        
                         break;
                         case 11:
+                            echo "<script>
+                                    notificationAdd('Website already registered ', 'alert-info');
+                                </script>";
                             # code...
-                            echo '<div class="animate__animated alert alert-info alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Website already registered <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                            
                             break;
                             
                             default:
-                            echo '<div class="animate__animated alert alert-warn alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                error <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                            echo "<script>
+                                    notificationAdd('error ', 'alert-warning');
+                                </script>";
+                            
                             # code...
                         break;
                 }
@@ -90,14 +93,16 @@ if(isset($_POST['website'])){
                 
             } else {
                 $_SESSION['new-website'] = null;
-                echo '<div class="animate__animated alert alert-danger alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Fail to verify match the content value properly<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+                echo "<script>
+                                    notificationAdd('Fail to verify match the content value properly ', 'alert-danger');
+                                </script>";
+                
             }
         } else {
-            echo '<div class="animate__animated alert alert-danger alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Fail to verify host @ '.$url.'  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+            echo "<script>
+                    notificationAdd('Fail to verify host @ ".$url." ', 'alert-danger');
+                </script>";
+            
         }
     }
         
@@ -111,22 +116,25 @@ elseif(isset($_POST['website_url'])){
     
     $url = filter_var($_POST['website_url'], FILTER_SANITIZE_URL);
     if(empty($url) || $url == false){
-        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                An error occured while processing <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+        echo "<script>
+                    notificationAdd('An error occured while processing ', 'alert-warning');
+                </script>";
+        
         exit();
     }
     $user = new User($_SESSION['account_holder']);
     if($user->trashWebsite($url)){
-        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                                Successfully deleted <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+        echo "<script>
+                    notificationAdd('Successfully deleted ', 'alert-warning');
+                </script>";
+        
         include_once 'table.inc.php';
     }
     else{
-        echo '<div class="animate__animated alert alert-warning alert-dismissible fade show notification-tab animate__backInRight" role="alert">
-                               fail to delete <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
+        echo "<script>
+                    notificationAdd('Fail to delete ', 'alert-warning');
+                </script>";
+        
         include_once 'table.inc.php';
     }
 

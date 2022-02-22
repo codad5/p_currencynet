@@ -673,8 +673,6 @@ class currencynet {
                     if (navigator.geolocation) {
                         try {
                             const position = await this.getCurrentPosition();
-                            console.log(1000);
-                            console.log(1000);
                             console.log(position);
                             let lat = position.coords.latitude;
                             let lon = position.coords.longitude;
@@ -682,12 +680,7 @@ class currencynet {
                             console.log(lon);
                             console.log(lat);
                             let newpoint = "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + lon + "&key=7db17f144fc245e791ef803d44afa6ee&pretty=1";
-                            // let lat = coords.latitude;
-                            // let long = coords.longitude
-                            // this.editNormTag(mainClass);
                             console.log("checking::" + this.editNormTag(mainClass));
-
-                            // this.editCurrencyTag(countryCode);
                             currencyDetails = await this.getCurrencyDetails(newpoint);
                             // console.log(currencyDetails);
                             const userLocation = currencyDetails;
@@ -700,9 +693,6 @@ class currencynet {
                             let ISO_3166 = userLocation.results[0].components['ISO_3166-1_alpha-2'];
                             this.clientCurrency = countryset[ISO_3166].currency;
                             this.clientCurrencyLogo = currencySet[this.clientCurrency].symbol;
-                            // let rateKey = `http://data.fixer.io/api/convert?access_key=65e9783d81ced67daad481a3a45400f0&from=${this.buildCurrency}&to=${this.clientCurrency}&amount=1`;
-                            // rateKey = `https://free.currconv.com/api/v7/convert?q=${this.buildCurrency}_${this.clientCurrency}&compact=ultra&apiKey=a6d05172b2432094770f`;
-                            // console.log(rateKey);
                             let rateData = await this.getDefaultRate();
                             console.log(rateData);
                             this.defaultRate = rateData[`${this.buildCurrency}_${this.clientCurrency}`];
