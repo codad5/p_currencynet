@@ -1,5 +1,8 @@
 <?php
 // session_start();
+
+use function PHPSTORM_META\type;
+
     class User extends Dbh{
         public $mail;
         public $data ;
@@ -355,6 +358,12 @@
         }
         public function CheckAllPayment(){
             $payments = $this->getMyPayment(false);
+            try{
+
+            
+            if(count($payments) > 0){
+
+            
             foreach ($payments as $key) {
                 if($key['verify'] == false){
                     if($this->verifyPayment($key['refrence_key'])){
@@ -367,5 +376,12 @@
                 # code...
             }
         }
+        }catch(TypeError $e){
+            // echo "Error: " . $e->getMessage;
+            echo "<script>
+                                notificationAdd('NO' , 'alert-warning');
+                            </script>";
+        }
+    }
 
     }

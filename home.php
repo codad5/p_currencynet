@@ -5,8 +5,9 @@ if(!isset($_SESSION['account_holder'])){
     exit;
 }
 // echo $_SESSION['account_holder'];
- $html = file_get_contents('http://localhost/Api-test/index.html');
- $tags = get_meta_tags('http://localhost/Api-test/index.html');
+ @$html = file_get_contents('http://localhost/Api-test/index.html');
+ @$tags = get_meta_tags('http://localhost/Api-test/index.html');
+ 
 //  var_dump($tags);
  include "classes/Dbh.classes.php";
  include "classes/user.class.php";

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="currencynet" content="747d1643702139268747d">
+    <meta name="currencynet" content="ef101646325662407ef10">
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/dist/carousel.css">
