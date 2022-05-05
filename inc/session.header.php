@@ -18,7 +18,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="http://localhost/currencynet/scripts/test.js"></script>
+    <script src="http://localhost/currencynet/scripts/production/production.js"></script>
     <script src="https://kit.fontawesome.com/598c5133cc.js" crossorigin="anonymous"></script>
 
     <script src="scripts/jquery-3.6.0.min.js"></script>

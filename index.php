@@ -2,7 +2,7 @@
 session_start();
     if(isset($_SESSION['account_holder'])){
         header('location:home');
-        // echo 'me';
+        exit;
         
       }
       include_once 'header.php';

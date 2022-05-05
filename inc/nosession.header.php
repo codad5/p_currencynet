@@ -24,8 +24,7 @@
 
     <title>currencynet</title>
     <script src="scripts/jquery-3.6.0.min.js"></script>
-    <script src="scripts/test.js"></script>
-    <script src="http://localhost/currencynet/scripts/test.js"></script>
+    <script src="http://localhost/currencynet/scripts/production/production.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <style>
         header{
