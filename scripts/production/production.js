@@ -536,7 +536,7 @@ class currencynet {
                 rate = rateData[`${buildCurrency}_${this.clientCurrency}`];
             }
 
-            console.log(clientCurrency);
+            // console.log(clientCurrency);
             if (!this.floatBol) {
 
 
@@ -711,7 +711,8 @@ class currencynet {
 
                     // this.editCurrencyTag(countryCode);
                 }).catch((e) => {
-                    return e;
+                    // return e;
+                    throw new Error(e)
                 });
         };
         this.getDefaultRate = (buildCurrency = this.buildCurrency) => {
@@ -730,7 +731,7 @@ class currencynet {
 
                     // this.editCurrencyTag(countryCode);
                 }).catch((e) => {
-                    return e;
+                    throw new Error(e)
                 });
         };
         this.reWrite = async (manualEdit = false) => {
@@ -764,21 +765,22 @@ class currencynet {
                         try {
                             if (manualEdit == false) {
                             const position = await this.getCurrentPosition();
-                            console.log(position);
+                            // console.log(position);
                             let lat = position.coords.latitude;
                             let lon = position.coords.longitude;
                             // var editNormTags = this.editNormTag(countryCode);
-                            console.log(lon);
-                            console.log(lat);
-                            console.log("hello manual edit = false");
-                                console.log("hello manual edit = false");
+                            // console.log(lon);
+                            // console.log(lat);
+                            // console.log("hello manual edit = false");
+                                // console.log("hello manual edit = false");
 
                                 let newpoint = "https://api.opencagedata.com/geocode/v1/json?q=" + lat + "+" + lon + "&key=7db17f144fc245e791ef803d44afa6ee&pretty=1";
                                 console.log("checking::" + this.editNormTag(mainClass));
+                                let currencyDetails, rateData;
                                 currencyDetails = await this.getCurrencyDetails(newpoint);
                                 // console.log(currencyDetails);
                                 const userLocation = currencyDetails;
-                                console.log(userLocation);
+                                console.log("your location data", userLocation);
 
 
                                 // });
@@ -788,14 +790,11 @@ class currencynet {
                                 this.clientCurrency = countryset[ISO_3166].currency;
                             }
                             this.clientCurrencyLogo = currencySet[this.clientCurrency].symbol;
-                            try{
+                            
 
                                 let rateData = await this.getDefaultRate();
-                            }
-                            catch(err){
-
-                                console.warn(err);
-                            }
+                            
+                            
                             this.defaultRate = rateData[`${this.buildCurrency}_${this.clientCurrency}`];
                             if (this.defaultRate == NaN || this.defaultRate == undefined) {
 
@@ -810,11 +809,11 @@ class currencynet {
                             // "Access Restricted - Your current Subscription Plan does not support this API Function."
                             // console.log(userLocation.results[0].components['ISO_3166-1_alpha-2']);
                             // this.editNormTag(mainClass, true);
-                            console.log("did this");
+                            // console.log("did this");
                             // await 
                         } catch (err) {
 
-                            console.log("error fetching Client Location");
+                            console.log(err, "error fetching Client Location");
                             this.editNormTag(mainClass, false);
                             this.editCurrencyTag(countryCode, false);
 
