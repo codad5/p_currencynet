@@ -27,7 +27,7 @@ if($prePayment !== false){
                     console.log("hello payWithPaystack");
                 // e.preventDefault();
                 let handler = PaystackPop.setup({
-                    key: "pk_live_4125c5662d4f3ce1a758fc0233bb746bd0dea5a3", // Replace with your public key
+                    key: "pk_live_4125c5662d4f3ce1a7xxxxxxxxxxxxxxxx", // Replace with your public key
                     email: "'.$user->mail.'",
                     amount: '.$amount.' * '.$user->rate.' * 100,
                     currency: "NGN",
