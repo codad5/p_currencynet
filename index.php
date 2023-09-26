@@ -1,4 +1,5 @@
 <?php
+
 session_start();
     if(isset($_SESSION['account_holder'])){
         header('location:home');
